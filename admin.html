@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Registered Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: rgb(219, 199, 228);
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: rgb(151, 22, 102);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Registered Users</h2>
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>password</th>
+        </tr>
+    </thead>
+    <tbody id="userTable"></tbody>
+</table>
+
+<script>
+    // Load users from localStorage
+    document.addEventListener("DOMContentLoaded", function () { //check
+        const userTable = document.getElementById("userTable");
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+
+        users.forEach(user => {
+            let row = document.createElement("tr");
+                row.innerHTML = `
+                <td>${user.firstName}</td>
+                <td>${user.lastName}</td>
+                <td>${user.phone}</td>
+                <td>${user.email}</td>
+                <td>${user.password}</td>
+            `;
+            userTable.appendChild(row);   //inesrrting data in html
+        });
+    });
+</script>
+
+</body>
+</html>
